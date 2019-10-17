@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>componenet called in demo</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <link rel="stylesheet" href=""> -->
+  <!-- <script rel="text/html" href="lukes-card.html"></script> -->
+
+
+</head>
+
+<body>
+  <nav>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <a class="navbar-brand" href="https://www.clutchanalytics.com/" target="blank"><img id='navLogo'
+          src="../images/logoClutch.png"> </a>
+    </nav>
+  </nav>
+  <section id="section1">
+    <div id="container">
+      <h1>W3 component Lukas-Card</h1>
+      <table>
+        <thead>
+          <th> Pros</th>
+          <th>Cons</th>
+        </thead>
+        <tr>
+          <td>
+            <ul id="pros" class="list">
+              <li>Not dependent upon external development</li>
+              <li>Native JS makes for superior maintainabilty and readability</li>
+              <li>Reusable and custom for our needs</li>
+              <li>Could lead to a native inter-company library/cdn</li>
+            </ul>
+          </td>
+          <td>
+            <ul id="cons" class="list">
+              <li>Lacks a clear and defined process for calling in componenets without enlarging base file</li>
+              <li>Creating a CDN/NPM seems to be the only way to efficiently utilize this to scale</li>
+              <li>Would need R&D on where the base level for componenets should be (not so many functions/properties
+                that end user cant overwrite). </li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="section2">
+    <Lukes-card>
+    </Lukes-card>
+  </section>
+
+
+
+</body>
+<style>
+  body {
+    background-image:
+      linear-gradient(to bottom, rgba(85, 191, 233, 0.575), rgba(26, 8, 129, 0.37)),
+      url('../images/insurance.jpg');
+    background-size: auto;
+    margin: 0;
+    font-family: 'Play', sans-serif;
+    background-repeat: no-repeat;
+
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: #040503;
+    padding-bottom: 0.5%;
+    padding-top: 1%;
+  }
+
+  #navLogo {
+    width: 35%;
+    ;
+  }
+
+  nav a {
+    text-align: center;
+    color: #98d0c4;
+    font-size: 1.25rem;
+  }
+
+  nav a:hover {
+    font-size: 1.35rem;
+    transform: translateY(10px);
+    color: white;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Play&display=swap');
+
+  #container {
+    display: flex;
+    justify-content: center;
+  }
+
+  #container h1 {
+    text-align: center;
+  }
+
+  .list {
+    word-wrap: break-word;
+  }
+
+  #section1 {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 50% 100%, 0 90%);
+    background-color: #84c9f6;
+    height: 35vh;
+  }
+
+  #section2 {
+    font-family: 'Play', sans-serif;
+    background-image:
+        linear-gradient(to bottom, rgba(85, 191, 233, 0.575), rgba(26, 8, 129, 0.37)),
+        url('../images/insurance.jpg');
+    background-size: cover;
+    margin-top: -2%;;
+
+  }
+
+  table {
+    padding-top: 3%;
+  }
+
+  .list {
+    font-size: 1.2rem;
+    line-height: 20px;
+  }
+
+  th {
+    font-size: 1.7rem;
+  }
+</style>
+<!-- begin componenet call -->
+<template id="card-template">
+  <style>
+    html {
+      height: 100%;
+    }
+
+    .lukes-card {
+      background-color: transparent;
+      width: 25vw;
+      height: 80vh;
+      perspective: 1000px;
+      margin-left: 37%;
+      padding-top: 5%;
+      padding-bottom: 3%;
+    }
+
+    .lukes-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      border-radius: 5%;
+
+    }
+
+    .lukes-card:hover .lukes-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .lukes-card-front,
+    .lukes-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 5%;
+
+    }
+
+    .lukes-card-front {
+      background-image: linear-gradient(0.25turn, #3f87a65e, #040503, #3f87a65e),
+        url('../images/hexCarbon.jpg');
+      color: black;
+      background-size: 290%;
+    }
+
+    .lukes-card-back {
+      background-color: #2980b9;
+      color: white;
+      transform: rotateY(180deg);
+    }
+
+    .back-text {
+      margin: 2% 2.5%;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .lukes-card-back {
+      background-image: linear-gradient(0.25turn, #3f87a6a6, #040503, #f69c3c9f),
+        url('../images/hexCarbon.jpg');
+      background-size: cover;
+    }
+
+    .fText {
+      color: transparent;
+      font-family: 'Play', sans-serif;
+      font-size: 1.5rem;
+      background: linear-gradient(0.25turn, #5ab9e2, #c4c5c3, #f69c3c);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+  </style>
+  <div class="lukes-card">
+    <div class="lukes-card-inner">
+      <div class="lukes-card-front">
+        <img src="../images/logoClutch.png" alt="logo" style="width:24vw;height:120px;margin-top:50%;">
+        <p class="fText">COMPONENT MODEL <br><br> Lukas Simianer</p>
+      </div>
+      <div class="lukes-card-back">
+        <img src="../images/logoClutch.png" alt="cardImg" style="width:24vw;height:120px;margin-top:10%;">
+        <h1 class="cardHead">Lukas Simianer</h1>
+        <p class="title">Junior Developer</p>
+        <p class="title">26 years old</p>
+        <div class="back-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta commodi, neque tenetur ea cupiditate
+          accusamus, dolore numquam incidunt dolorem eveniet officiis itaque quos hic qui ut inventore maxime
+          culpa blanditiis?
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  'use strict';
+
+  class LukesCard extends HTMLElement {
+    static get observedAttributes() {
+      return ['open'];
+    }
+
+    constructor() {
+      super();
+      this.close = this.close.bind(this);
+    }
+
+    attributeChangedCallback(attrName, oldValue, newValue) {
+      if (oldValue !== newValue) {
+        this[attrName] = this.hasAttribute(attrName);
+      }
+    }
+
+    connectedCallback() {
+      const template = document.getElementById('card-template');
+      const node = document.importNode(template.content, true);
+      this.appendChild(node);
+
+
+      this.querySelector('.overlay').addEventListener('click', this.close);
+      this.open = this.open;
+    }
+
+    disconnectedCallback() {
+      this.querySelector('button').removeEventListener('click', this.close);
+      this.querySelector('.overlay').removeEventListener('click', this.close);
+    }
+
+
+    get open() {
+      return this.hasAttribute('open');
+    }
+
+
+    set open(isOpen) {
+      this.querySelector('.wrapper').classList.toggle('open', isOpen);
+      this.querySelector('.wrapper').setAttribute('aria-hidden', !isOpen);
+      if (isOpen) {
+        this._wasFocused = document.activeElement;
+        this.setAttribute('open', '');
+        document.addEventListener('keydown', this._watchEscape);
+        this.focus();
+        this.querySelector('button').focus();
+      } else {
+        this._wasFocused && this._wasFocused.focus && this._wasFocused.focus();
+        this.removeAttribute('open');
+        document.removeEventListener('keydown', this._watchEscape);
+        this.close();
+      }
+    }
+
+
+    close() {
+      if (this.open !== false) {
+        this.open = false;
+      }
+      const closeEvent = new CustomEvent('card-closed');
+      this.dispatchEvent(closeEvent);
+    }
+
+    _watchEscape(event) {
+      if (event.key === 'Escape') {
+        this.close();
+      }
+    }
+  }
+
+  customElements.define('lukes-card', LukesCard);
+</script>
+
+</html>
